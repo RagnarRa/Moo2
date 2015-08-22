@@ -8,7 +8,6 @@ namespace Assignment01.Models
 {
     public class Course
     {
-        [Required]
         public int ID { get; set; }
         /// <summary>
         /// F. example "T-514-VEFT"

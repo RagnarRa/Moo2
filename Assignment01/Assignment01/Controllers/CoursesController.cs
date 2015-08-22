@@ -9,11 +9,19 @@ using System.Web.Http.Description;
 
 namespace Assignment01.Controllers
 {
+    /// <summary>
+    /// Known bugs: State is not stored. You can post to the in-memory list, but it will forget it for the next request. 
+    /// Was told this would be okay since the assignment's focus was not on storage but rather creating a basic Web API. 
+    /// </summary>
     [RoutePrefix("api/v1/assignment01")]
     public class CoursesController : ApiController
     {
         private List<Course> _courses;
-        private List<Student> _students; 
+        private List<Student> _students;
+        /// <summary>
+        /// In the absence of a DB.. I use this to keep track of the next ID to use. 
+        /// </summary>
+        private int _courseID; 
 
         public CoursesController()
         {
@@ -62,6 +70,8 @@ namespace Assignment01.Controllers
                     }
                 }
             };
+
+            _courseID = 3; 
         }
        
 
@@ -77,14 +87,14 @@ namespace Assignment01.Controllers
         }
 
         /// <summary>
-        /// TODO: Taka ekki við ID.. 
+        /// If given the Course ID parameter it is ignored. 
         /// </summary>
         /// <param name="newCourse"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("courses")]
         [ResponseType(typeof(Course))]
-        public IHttpActionResult PostCourse(Course newCourse)
+        public IHttpActionResult AddCourse(Course newCourse)
         {
             if (!ModelState.IsValid)
             {
@@ -93,7 +103,7 @@ namespace Assignment01.Controllers
 
             var course = new Course
             {
-                ID = newCourse.ID,
+                ID = _courseID,
                 TemplateID = newCourse.TemplateID,
                 Name = newCourse.Name,
                 StartDate = newCourse.StartDate,
@@ -101,6 +111,7 @@ namespace Assignment01.Controllers
             };
 
             _courses.Add(course);
+            _courseID++; 
 
             //We utilize the name in the route attribute of the function
             var location = Url.Link("GetCourseByID", new { ID = course.ID }); 
@@ -123,8 +134,8 @@ namespace Assignment01.Controllers
         }
 
         [HttpPut]
-        [Route("courses")]
-        public HttpResponseMessage UpdateCourse(Course updatedCourse)
+        [Route("courses/{ID:int}")]
+        public HttpResponseMessage UpdateCourse(int ID, Course updatedCourse)
         {
             if (!ModelState.IsValid)
             {
@@ -133,7 +144,7 @@ namespace Assignment01.Controllers
 
             foreach (Course course in _courses)
             {
-                if (course.ID == updatedCourse.ID)
+                if (course.ID == ID)
                 {
                     course.TemplateID = updatedCourse.TemplateID;
                     course.Name = updatedCourse.Name;
