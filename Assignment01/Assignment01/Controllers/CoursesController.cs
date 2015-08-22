@@ -16,62 +16,66 @@ namespace Assignment01.Controllers
     [RoutePrefix("api/v1/assignment01")]
     public class CoursesController : ApiController
     {
-        private List<Course> _courses;
-        private List<Student> _students;
+        private static List<Course> _courses;
+        private static List<Student> _students;
         /// <summary>
         /// In the absence of a DB.. I use this to keep track of the next ID to use. 
         /// </summary>
-        private int _courseID; 
+        private static int _courseID; 
 
         public CoursesController()
         {
-            _students = new List<Student>
+            //If I haven't initiailized the list with data before.. 
+            if (_students == null)
             {
-                new Student {
-                    SSN = "1111111111",
-                    Name = "Ragnar Borgþór Ragnarsson"
-                },
-                new Student {
-                    SSN = "0000000000",
-                    Name = "Jón Agnar Stefánsson"
-                },
-                new Student {
-                    SSN = "0101010101",
-                    Name = "Snævar Dagur Pétursson"
-                },
-                new Student {
-                    SSN = "1010101010",
-                    Name = "Guðjón Hólm Sigurðsson"
-                }
-            };
-
-            _courses = new List<Course>
-            {
-                new Course {
-                    ID = 1, 
-                    Name = "Web services",
-                    TemplateID = "T-514-VEFT",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddMonths(3),
-                    Students = new List<Student> {
-                        _students.ElementAt(2),
-                        _students.ElementAt(3)
+                _students = new List<Student>
+                {
+                    new Student {
+                        SSN = "1111111111",
+                        Name = "Ragnar Borgþór Ragnarsson"
+                    },
+                    new Student {
+                        SSN = "0000000000",
+                        Name = "Jón Agnar Stefánsson"
+                    },
+                    new Student {
+                        SSN = "0101010101",
+                        Name = "Snævar Dagur Pétursson"
+                    },
+                    new Student {
+                        SSN = "1010101010",
+                        Name = "Guðjón Hólm Sigurðsson"
                     }
-                },
-                new Course {
-                    ID = 2, 
-                    Name = "Computer networking",
-                    TemplateID = "T-409-TSAM",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddMonths(3),
-                    Students = new List<Student> {
-                        _students.ElementAt(0),
-                        _students.ElementAt(1)
-                    }
-                }
-            };
+                };
 
-            _courseID = 3; 
+                    _courses = new List<Course>
+                {
+                    new Course {
+                        ID = 1, 
+                        Name = "Web services",
+                        TemplateID = "T-514-VEFT",
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now.AddMonths(3),
+                        Students = new List<Student> {
+                            _students.ElementAt(2),
+                            _students.ElementAt(3)
+                        }
+                    },
+                    new Course {
+                        ID = 2, 
+                        Name = "Computer networking",
+                        TemplateID = "T-409-TSAM",
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now.AddMonths(3),
+                        Students = new List<Student> {
+                            _students.ElementAt(0),
+                            _students.ElementAt(1)
+                        }
+                    }
+                };
+
+                _courseID = 3;
+            }
         }
        
 
@@ -107,7 +111,8 @@ namespace Assignment01.Controllers
                 TemplateID = newCourse.TemplateID,
                 Name = newCourse.Name,
                 StartDate = newCourse.StartDate,
-                EndDate = newCourse.EndDate
+                EndDate = newCourse.EndDate,
+                Students = new List<Student>()
             };
 
             _courses.Add(course);
