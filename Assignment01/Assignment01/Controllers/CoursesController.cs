@@ -91,9 +91,9 @@ namespace Assignment01.Controllers
         }
 
         /// <summary>
-        /// If given the Course ID parameter it is ignored. 
+        /// If given the Course ID parameter it is ignored. Adds a course.
         /// </summary>
-        /// <param name="newCourse"></param>
+        /// <param name="newCourse">The course object.</param>
         /// <returns></returns>
         [HttpPost]
         [Route("courses")]
@@ -122,7 +122,11 @@ namespace Assignment01.Controllers
             var location = Url.Link("GetCourseByID", new { ID = course.ID }); 
             return Created(location, course);
         }
-
+        /// <summary>
+        /// Gets a course.
+        /// </summary>
+        /// <param name="ID">The ID of the course to get.</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("courses/{ID:int}", Name="GetCourseByID")]
         [ResponseType(typeof(Course))]
@@ -138,6 +142,12 @@ namespace Assignment01.Controllers
             return Ok(retCourse); 
         }
 
+        /// <summary>
+        /// Updates a course. 
+        /// </summary>
+        /// <param name="ID">ID of the course to update.</param>
+        /// <param name="updatedCourse">A course object. The ID is ignored.</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("courses/{ID:int}")]
         public HttpResponseMessage UpdateCourse(int ID, Course updatedCourse)
@@ -155,7 +165,7 @@ namespace Assignment01.Controllers
                     course.Name = updatedCourse.Name;
                     course.StartDate = updatedCourse.StartDate;
                     course.EndDate = updatedCourse.EndDate;
-                    return new HttpResponseMessage(HttpStatusCode.OK);
+                    return new HttpResponseMessage(HttpStatusCode.OK); //Could also make the func return IHttp and return StatusCode
                     
                 }
             }
@@ -166,7 +176,7 @@ namespace Assignment01.Controllers
         /// <summary>
         /// Note to self: Could also just return void. NoContent is the default reply. 
         /// </summary>
-        /// <param name="ID"></param>
+        /// <param name="ID">ID of the course to delete.</param>
         /// <returns></returns>
         [HttpDelete]
         [Route("courses/{ID:int}")]
@@ -177,7 +187,7 @@ namespace Assignment01.Controllers
             {
                 if (course.ID == ID) {
                     _courses.RemoveAt(index);
-                    return new HttpResponseMessage(HttpStatusCode.NoContent); //204
+                    return new HttpResponseMessage(HttpStatusCode.NoContent); //204, could also return IHttp... and return StatusCode(..)
                 }
 
                 index++; 
@@ -186,6 +196,11 @@ namespace Assignment01.Controllers
             throw new HttpResponseException(HttpStatusCode.NotFound);
         }
 
+        /// <summary>
+        /// Gets a list of students for the given course.
+        /// </summary>
+        /// <param name="courseID">The ID of the course for which to get the students..</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("courses/{courseID:int}/students")]
         public List<Student> GetStudents(int courseID)
@@ -199,6 +214,12 @@ namespace Assignment01.Controllers
             return course.Students;
         }
 
+        /// <summary>
+        /// Adds a student to the course.
+        /// </summary>
+        /// <param name="courseID">ID of the course to which the student should be added.</param>
+        /// <param name="student">The object for the student being created.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("courses/{courseID:int}/students")]
         public HttpResponseMessage AddStudent(int courseID, Student student)
@@ -215,7 +236,7 @@ namespace Assignment01.Controllers
                 if (courseID == course.ID)
                 {
                     course.Students.Add(student);
-                    return new HttpResponseMessage(HttpStatusCode.Created);
+                    return new HttpResponseMessage(HttpStatusCode.Created); //Could also return IHttp... and return StatusCode(..) or Created() BUT since there is no way for the API to access a student directly we would not use Created(). 
                 }
             }
 
