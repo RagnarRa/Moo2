@@ -3,3 +3,8 @@ C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\bin\Debug\API.Models.p
 C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\obj\Debug\API.Models.csprojResolveAssemblyReference.cache
 C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\obj\Debug\API.Models.dll
 C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\obj\Debug\API.Models.pdb
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\bin\Debug\API.Models.dll.config
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\bin\Debug\EntityFramework.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\bin\Debug\EntityFramework.xml
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment02\API.Models\bin\Debug\EntityFramework.SqlServer.xml

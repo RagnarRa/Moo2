@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace API.Services.Repositories
 {
+    /// <summary>
+    /// The AppDataContext for the database. 
+    /// </summary>
     class AppDataContext : DbContext 
     {
         public AppDataContext()

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace API.Services.Repositories
 {
+    /// <summary>
+    /// The class used for seeding the database. 
+    /// </summary>
     class CourseDBInitializer : DropCreateDatabaseAlways<AppDataContext>
     {
         protected override void Seed(AppDataContext context)
