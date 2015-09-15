@@ -1,0 +1,11 @@
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\bin\Debug\CoursesAPI.Tests.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\bin\Debug\CoursesAPI.Tests.pdb
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\bin\Debug\CoursesAPI.Models.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\bin\Debug\CoursesAPI.Services.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\bin\Debug\EntityFramework.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\bin\Debug\CoursesAPI.Models.pdb
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\bin\Debug\CoursesAPI.Services.pdb
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\bin\Debug\EntityFramework.xml
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\obj\Debug\CoursesAPI.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\obj\Debug\CoursesAPI.Tests.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Tests\obj\Debug\CoursesAPI.Tests.pdb

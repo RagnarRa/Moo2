@@ -1,0 +1,12 @@
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\CoursesAPI.Services.dll.config
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\CoursesAPI.Services.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\CoursesAPI.Services.pdb
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\CoursesAPI.Models.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\EntityFramework.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\CoursesAPI.Models.pdb
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\EntityFramework.xml
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\obj\Debug\CoursesAPI.Services.csprojResolveAssemblyReference.cache
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\obj\Debug\CoursesAPI.Services.dll
+C:\Users\Ragnar\Desktop\VEFT\VEFT\Assignment04\Assignment4-startproject\Week05\CoursesAPI.Services\obj\Debug\CoursesAPI.Services.pdb
