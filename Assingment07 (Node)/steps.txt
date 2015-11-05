@@ -1,0 +1,1 @@
+Settum upp package.json fyrir express. Gerðum npm install. 
