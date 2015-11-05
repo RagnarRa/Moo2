@@ -41,9 +41,9 @@ So 2. Go to package.json, and to the root object, add the following:
     "start": "node app.js"
 }
 
-Okay.. so now we can finally press the cog on the menu we got after we pressed the debugging bug. This will create launch.json.
+Now we can finally press the cog on the menu we got after we pressed the debugging bug. This will create launch.json.
 
 We should now be able to set a breakpoint, and press F5 to debug the app.
 
-You shuold now be able to debug the way you'd expect: Step your way through the code, add watches on the left hand panel to watch individual variables or simply hover over the ones you're going over in the code.
+You should now be able to debug the way you'd expect: Step your way through the code, add watches on the left hand panel to watch individual variables or simply hover over the ones you're going over in the code.
 You can also see the local variables on the left hand-side. 
