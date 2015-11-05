@@ -1,0 +1,10 @@
+npm init
+npm install express --save
+npm install mongodb --save
+npm install body-parser --save
+npm install uuid --save
+
+mongod --dbpath /tmp/data
+mongo to open the shell.. 
+show collections 
+db.users.find() 
