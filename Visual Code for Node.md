@@ -1,4 +1,4 @@
-# Setting Visual Code up for Node/Express IntelliSense and Debugging
+# Setting Visual Code up for Node/Express
 
 To get node/express support in Visual Code (IntelliSense and more): 
 
@@ -7,6 +7,7 @@ Open a terminal/command prompt and enter the following commands:
 npm install -g tsd 
 
 tsd query node --action install
+
 tsd query express --action install 
 
 If, when you installed Visual Code from: https://www.visualstudio.com/en-us/products/code-vs.aspx you selected to add Code to your right-click menu: Right click your node project and select open with code. 
