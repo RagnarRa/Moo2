@@ -12,7 +12,7 @@ tsd query express --action install
 
 If, when you installed Visual Code from: https://www.visualstudio.com/en-us/products/code-vs.aspx you selected to add Code to your right-click menu: Right click your node project and select open with code. 
 
-If you didn't, enter the directory and open a terminal there, and enter code .. This will open the whole (folder-based) project. 
+If you didn't, enter the directory and open a terminal there, and enter 'code .'. This will open the whole (folder-based) project. 
 
 To get rid of the "This can only be used with ES6" error in your node file (assuming you're using ES6 syntax): Hover over the name of your opened folder in Visual Code, select new file, and name it jsconfig.json.
 
@@ -25,9 +25,9 @@ Insert the following:
     }
 }
 
-We save this, and the error shold be no more. 
+We save this, and the error should be no more. 
 
-Debugging JavaScript (or rather, Node) in Visual Code: 
+## Debugging JavaScript (or rather, Node) in Visual Code: 
 
 We must specify how to start the app. 
 
