@@ -1,0 +1,22 @@
+{
+  "name": "assignment09",
+  "version": "1.0.0",
+  "description": "Very good stuff. Very kafka.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Very",
+    "good."
+  ],
+  "author": "Ragnar, NonnXor",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "kafka-node": "^0.2.29",
+    "mongodb": "^2.0.46",
+    "uuid": "^2.0.1"
+  }
+}
