@@ -16,11 +16,7 @@ const companies = require('./companies');
 const ObjectID = require('mongodb').ObjectID;
 const ADMIN_TOKEN = '2632dcfd-ed04-4438-885f-bdf9450c5af8';
 
-/*
-app.get("/api//feeds/:wall_id", (req, res) => {
-	const page = req.query.page || 0; 
-	const size = req.query.size || 10; 
-	
+/* 
 	// /index/type/id (id optional)
 	const promise = elasticClient.search({
 		'index' : 'feeds',
@@ -35,58 +31,10 @@ app.get("/api//feeds/:wall_id", (req, res) => {
 			}
 		}
 	});
-	
-	promise.then((doc) => {
-		res.send(doc.hits.hits.map( (d) => d._source )); //Takes the object d.. and maps it to d._source
-	}, (err) => {
-		res.status(500).send(err); 
-	});
-});
-
-app.post('/api/feeds/:wall_id', bodyParser.json(), (req, res) => {
-	//Add to DB, if success.. add to ES
-	
-	const data = {
-		"wall_id" : "4d467...",
-		"author_id" : "etc",
-	};
-	
-    const promise = elasticClient.index({
-		'index' : 'feeds',
-		'type' : 'feed',
-		'id' : 1, //would be same as in db
-		'body' : data
-	});
-	
-	promise.then((doc) => {
-		res.send(doc); 
-	}, (err) => {
-		res.status(500).send(err); 
-	});
-}); */
+*/
 	
 
 //POSTs a company, needs admin authentication.. 
-/* 
-{     id: Unique id for the company, title: String representing the company name, description: String represetning description for the company,  
-	  url: String representing the company homepage, created: Date representing the creation date of the company (when it was posted) 
-} 
-
-This endpoint should be authorized with a token named ADMIN_TOKEN. ** 
-
-If ADMIN_TOKEN is missing/incorrect => 401 Unauthorized ** 
-
-If content-type in the request header is not application/json => 415 Unsupported Media Type. ** 
-
-If a company with the same name exists, then we answer with status code 409 Conflict. **
-
-If preconditions are met then the company should be written to MongoDB AND to ElasticSearch => 201. ** 
-
-Note that the id of the document in ElasticSearch should contain the same id as the document within MongoDB. 
-This endpoint should then answer with status code 201
-and the response body should include a Json document named id
-and should have id of the newly created company as value.
-*/
 app.post('/api/company', (req, res) => {
 	const headers = req.headers;
 
@@ -169,13 +117,7 @@ app.post('/api/company', (req, res) => {
 The companies should be fetched from ElasticSearch.
  This endpoint should return a list of Json objects with the following fields.
 
-id, title, description, url
-
-Other fields should be EXCLUDED. This endpoint accepts two request parameters, page and max.
- If they are not presented they should be defaulted by 0 and 20 respectively.
- They should control the pagination in Elasticsearch
- and allow the client to paginate the result.
- The list should be ordered by alphabetically by the company title. */
+id, title, description, url */
 
 app.get('/api/company', (req, res) => {
 	const page = req.query.page || 0; 
@@ -230,6 +172,83 @@ app.get('/api/company/:id', (req, res) => {
 		} else {
 			res.status(404).send('No company found with that id!');
 		}
+	});
+});
+
+app.delete('/api/company/:id', (req, res) => {
+	const headers = req.headers;
+	if (!headers.hasOwnProperty('admin_token') || headers.admin_token !== ADMIN_TOKEN) {
+		res.status(401).send('Invalid authentication.');
+		return; 
+	}
+	
+	const id = req.params.id;
+	if (!ObjectID.isValid(id)) {
+		res.status(412).send('Invalid company id.');
+		return;
+	}
+	
+	companies.getCompanies({ '_id' : new ObjectID(id) }, function(err, docs) {	
+		if (docs.length > 0) { //The company exists
+			//Remove it from MongoDB
+			companies.deleteCompany(id, (err, dbrs) => {
+				if (err) {
+					res.status(500).send('Unable to update company.'); //500 Internal Server Error
+					return; 
+				}
+				
+				//Remove it from ElasticSearch
+				const promise = elasticClient.delete({
+					'index' : 'companies',
+					'type' : 'company',
+					'id' : id, //DocumentID 
+				});
+				
+				promise.then((doc) => {
+					res.send("Company removed."); 
+				}, (err) => {
+					res.status(500).send(err); 
+				}); 
+			});
+			
+		} else {
+			res.status(412).send("Company doesn't exist.");
+		}
+	});
+});
+
+//Search results shold include id, title, description, url
+//Incoming data is { 'search' : search-string } 
+//Can be a full-text search
+app.post('/api/company/search', (req, res) => {
+	const data = req.body;
+	
+	if (!data.hasOwnProperty('search')) {
+		res.status(412).send('Search property missing.');
+		return;
+	}
+	
+	const searchString = data.search; 
+	
+	const promise = elasticClient.search({
+		'index' : 'companies',
+		'type' : 'company', 
+		'body' : { 
+			'_source' : ["_id", "title", "description", "url"], //Get only these fields
+			'query' : {
+				"query_string" : {
+					"query" : searchString
+				}
+			}
+		} 
+	});
+	 
+	promise.then((doc) => {
+		console.dir(doc.hits.hits);
+		console.dir(doc); 
+		res.send(doc.hits.hits.map( (d) => d._source ));
+	}, (err) => {
+		res.status(500).send(err); 
 	});
 });
 
@@ -313,70 +332,6 @@ app.post('/api/company/:id', (req, res) => {
 		} else {
 			res.status(404).send('No company found with that id!');
 		}
-	});
-});
-
-app.delete('/api/company/:id', (req, res) => {
-	const headers = req.headers;
-	if (!headers.hasOwnProperty('admin_token') || headers.admin_token !== ADMIN_TOKEN) {
-		res.status(401).send('Invalid authentication.');
-		return; 
-	}
-	
-	const id = req.params.id;
-	if (!ObjectID.isValid(id)) {
-		res.status(412).send('Invalid company id.');
-		return;
-	}
-	
-	companies.getCompanies({ '_id' : new ObjectID(id) }, function(err, docs) {	
-		if (docs.length > 0) { //The company exists
-			//Remove it from MongoDB
-			companies.deleteCompany(id, (err, dbrs) => {
-				if (err) {
-					res.status(500).send('Unable to update company.'); //500 Internal Server Error
-					return; 
-				}
-				
-				//Remove it from ElasticSearch
-				const promise = elasticClient.delete({
-					'index' : 'companies',
-					'type' : 'company',
-					'id' : id, //DocumentID 
-				});
-				
-				promise.then((doc) => {
-					res.send("Company removed."); 
-				}, (err) => {
-					res.status(500).send(err); 
-				}); 
-			});
-			
-		} else {
-			res.status(412).send("Company doesn't exist.");
-		}
-	});
-});
-
-//Search results shold include id, title, description, url
-//Incoming data is { 'search' : search-string } 
-//Can be a full-text search
-app.post('/api/company/search', (req, res) => {
-	const promise = elasticClient.search({
-		'index' : 'companies',
-		'type' : 'company', 
-		'body' : { 
-			'_source' : ["_id", "title", "description", "url"], //Get only these fields
-			'query' : {
-				'match_all' : {}
-			}
-		} 
-	});
-	
-	promise.then((doc) => {
-		res.send(doc.hits.hits.map( (d) => d._source ));
-	}, (err) => {
-		res.status(500).send(err); 
 	});
 });
 
