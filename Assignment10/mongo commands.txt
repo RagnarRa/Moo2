@@ -1,0 +1,7 @@
+mongod --dbpath /tmp/data
+mongo to open the shell.. 
+use app
+show collections 
+db.users.find() 
+
+db.remove({}); //query í brackets 

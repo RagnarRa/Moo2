@@ -1,0 +1,22 @@
+In ES folder (in C)..
+
+run bin/elasticsearch.bat to start a single node. 
+
+Can control cluster name in conf/elasticsearch.yaml - should be unique so that it doesn't try to jion another cluster. 
+GIVE IT A NAME.. might join with a cluster on the same network. 
+
+cluster.name: some-name
+
+Sjá hvað eru mörg documents í elastic search:
+
+curl http://localhost:9200/_cat/count?v
+
+http://localhost:9200/companies/company/_mapping?pretty=true
+
+elasticsearch node gæji.. skoða exapmles á github.. elasticsearch.js..
+
+
+
+Kill the index: curl -XDELETE http://localhost:9200/index
+
+curl -XDELETE http://localhost:9200/companies/company/_mapping //Drepa mappings á oject

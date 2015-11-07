@@ -1,0 +1,19 @@
+http://stackoverflow.com/questions/25037263/apache-kafka-error-on-windows-couldnot-find-or-load-main-class-quorumpeermain
+
+Use kafka 2.10
+
+Í CygWin
+
+cd bin/windows
+
+./zookeeper-server-start.bat ../../config/server.properties
+./kafka-server-start.bat ../../config/server.properties
+
+RUN FROM /bin/windows.. 
+
+Create topic:
+
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic requests
+
+kafka-topics.bat --list --zookeeper localhost:2181
+

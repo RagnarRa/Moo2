@@ -1,0 +1,100 @@
+Final lab-class and hand-in assignment
+
+Project 1 - Punchy
+
+In this project we continue on the "Punch card" project, which we now refer to as "Punchy". 
+In this final assignment we will work solely with the company part and augment it with ElasticSearch.
+
+The following subsection describe the routes and their functionality that you must implement.
+
+POST /companies - 10%
+
+The route should be used to create new companies in in Punchy. 
+The body data which client can post should be on the following form.
+
+{     id: Unique id for the company
+      title: String representing the company name, 
+	  description: String represetning description for the company,  
+	  url: String representing the company homepage
+      created: Date representing the creation date of the company (when it was posted) 
+} 
+
+This endpoint should be authorized with a token named ADMIN_TOKEN
+known by clients and server. The ADMIN_TOKEN secrete can be hard-coded in the server.
+ The following preconditions must be implemented in this endpoint.
+
+If ADMIN_TOKEN is missing or is incorrect the server responds with status code 401.
+If content-type in the request header is not application/json then this
+endpoint should answer with status code 415.
+
+If a company with the same name exists, then we answer with status code 409.
+If preconditions are met then the company should be written to MongoDB 
+AND to ElasticSearch. 
+
+Note that the id of the document in ElasticSearch should contain the same id as the document within MongoDB. 
+This endpoint should then answer with status code 201
+and the response body should include a Json document named id
+and should have id of the newly created company as value.
+
+GET /companies[?page=N&max=N] - 20%
+
+Endpoint for fetching list of companies that have been added to Punchy.
+The companies should be fetched from ElasticSearch.
+ This endpoint should return a list of Json objects with the following fields.
+
+id,
+title
+description
+url
+Other fields should be EXCLUDED. This endpoint accepts two request parameters, page and max.
+ If they are not presented they should be defaulted by 0 and 20 respectively.
+ They should control the pagination in Elasticsearch
+ and allow the client to paginate the result.The list should be ordered by alphabetically by the company title.
+
+GET /companies/:id - 20%
+
+Fetch a given company by id from Mongodb. 
+If no company we return an empty response with status code 404.
+ If a given company is found we return a Json object with the following fields.
+
+id,
+title
+description
+url
+Other fields should be omitted from the response.
+
+POST /companies/:id - 20 %
+
+This route can be used to update a given company.
+The preconditions for POST /company also apply for this route.
+Also, if no company is found with by the given :id
+this route should respond with status code 404. 
+When the company has been updated in MongoDB 
+then the corresponding ElasticSearch document must be re-indexed.
+
+DELETE /companies/:id - 20%
+
+This route can be used to remove a previously added company.
+All the preconditions from POST /company also apply for this route.
+If not company is found by the :id 
+then the routes should respond with status code 404. 
+The company document must be deleted from MongoDB and from ElasticSearch.
+
+POST /companies/search - 10%
+
+This endpoint can be used to search for a given company that has been added to Punchy.
+The search should be placed by into the request body as a Json object on the following form.
+
+{     'search': String represting the search string } 
+The search can be a full-text search in the company documents within the Elasticsearch index.
+The respond should be a list of Json documents with the following fields
+
+id,
+title
+description
+url
+Other fields should be omitted.
+
+DockerFile (Bonus) - 5%
+
+Write a DockerFile, based on the Ubuntu:14.04 image that is able to execute the API.
