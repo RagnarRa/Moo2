@@ -1,0 +1,8 @@
+Model er hugtak yfir Entity, DTO, ViewModel.. 
+
+//Upper layer: 
+DTO -> Sendir út (DTOut) (T.d. CourseDTO, CourseDetailDTO)
+ViewModel -> Tekið við 
+
+//Lower layer:
+Entity (í grun)

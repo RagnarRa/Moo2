@@ -13,7 +13,7 @@ using System.Web.Http.Description;
 namespace Assignment02.Controllers
 {
     /// <summary>
-    /// This controller represents...
+    /// The course controller. Represents the API for various operations regarding courses. 
     /// </summary>
     [RoutePrefix("api/courses")]
     public class CoursesController : ApiController
@@ -26,18 +26,19 @@ namespace Assignment02.Controllers
         }
 
         /// <summary>
-        /// Todo: Approve. 
+        /// Gets a list of courses for a given semester.
+        /// If no semester is given, the current one is used.
         /// </summary>
-        /// <param name="semester"></param>
-        /// <returns></returns>
+        /// <param name="semester">The semester. Example: 20153</param>
+        /// <returns>A list of courses if there are any courses for the semester. Otherwise 404.</returns>
         [HttpGet]
         [Route("")]
         [ResponseType(typeof(List<CourseDTO>))]
-        public IHttpActionResult GetCourses(string semester)
+        public IHttpActionResult GetCourses(string semester = null)
         {
             List<CourseDTO> courseList = _service.GetCoursesBySemester(semester);
 
-            if (courseList == null)
+            if (courseList.Count() == 0)
             {
                 return NotFound();
             }
@@ -45,6 +46,11 @@ namespace Assignment02.Controllers
             return Ok(courseList);
         }
 
+        /// <summary>
+        /// Gets a course by ID. 
+        /// </summary>
+        /// <param name="ID">The ID of the course.</param>
+        /// <returns>The given course, or 404 if we can't find it.</returns>
         [HttpGet] 
         [Route("{ID:int}", Name="GetCourseByID")]
         [ResponseType(typeof(CourseDetailsDTO))]
@@ -67,7 +73,7 @@ namespace Assignment02.Controllers
         /// </summary>
         /// <param name="ID">The ID of the course.</param>
         /// <param name="courseVM">The course VM.</param>
-        /// <returns></returns>
+        /// <returns>412 if a required property is not present. NotFound if we can't find the course, or 200 if it's successful.</returns>
         [HttpPut]
         [Route("{ID:int}")]
         public IHttpActionResult UpdateCourse(int ID, CourseUpdateViewModel courseVM)
@@ -83,13 +89,14 @@ namespace Assignment02.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(); //Skila líklega Ok(object) eða content(StatusCode.Ok, CourseDTO); 
         }
 
         /// <summary>
+        /// Deletes a course.
         /// Will return 204 NoContent if successful, otherwise NotFound.
         /// </summary>
-        /// <param name="ID"></param>
+        /// <param name="ID">The ID of the course to delete.</param>
         [HttpDelete]
         [Route("{ID:int}")]
         public void DeleteCourse(int ID)
@@ -106,7 +113,7 @@ namespace Assignment02.Controllers
         /// Gets a list of students for the given course.
         /// </summary>
         /// <param name="courseID">The ID of the course.</param>
-        /// <returns>A list of students.</returns>
+        /// <returns>A list of students in the course if we find any, if we don't find the course, returns 404.</returns>
         [HttpGet] 
         [Route("{courseID:int}/students")]
         [ResponseType(typeof(List<StudentDTO>))]
@@ -114,6 +121,7 @@ namespace Assignment02.Controllers
         {
             List<StudentDTO> students = _service.GetStudentsByCourse(courseID);
 
+            //Null means the course didn't exist..
             if (students == null)
             {
                 return NotFound();
@@ -141,17 +149,18 @@ namespace Assignment02.Controllers
 
             if (!studentAddedSuccessfully)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.NotFound); //Í IHttpActionResult.. getur gert return StatusCode(...)
             }
 
             //Would return Created(location, studentDTO) but the API has no location for this object.. 
+            //Instead of this, want to use IHttpActionResult and [ResponseType].. then return Content(HttpStatusCode.Created, studentDTO) 
             return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
         /// <summary>
         /// Adds a course.
         /// </summary>
-        /// <param name="courseVM"></param>
+        /// <param name="courseVM">The course VM.</param>
         /// <returns>If the required fields aren't there, a precondition failed status is returned. Otherwise 201 Created and a CourseDTO object.</returns>
         [HttpPost]
         [Route("")]
@@ -164,6 +173,12 @@ namespace Assignment02.Controllers
             }
 
             CourseDTO courseDTO = _service.AddCourse(courseVM);
+
+            //If the courseDTO is null, it means we didn't find a CourseTemplate with the given ID
+            if (courseDTO == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
 
             var location = Url.Link("GetCourseByID", new { ID = courseDTO.ID });
             return Created(location, courseDTO);

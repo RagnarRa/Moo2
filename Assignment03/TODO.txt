@@ -2,12 +2,3 @@ Assignment02:
 *Mögulega.. þegar við eyðum course.. að eyða records sem tengjast því course í 
 StudentEnrollment..
 *AddCourse.. þegar við náum í course name.. ekki join-a courses lol.. 
-
-ISO datetime? Samþykkir ekki fyrsta example. 
-
-
-Data: 
-1. { TemplateID: "T-514-VEFT", StartDate: "2016-08-18T00:00:00", EndDate: "2016-11-10T00:00:00", Semester: "20163", MaxStudents: 4 }
-
-2. { SSN: "9876543210"}
-

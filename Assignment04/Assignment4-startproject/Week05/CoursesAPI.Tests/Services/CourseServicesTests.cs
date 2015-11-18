@@ -29,6 +29,8 @@ namespace CoursesAPI.Tests.Services
         private const int COURSEID_HONN_20153 = 1340;
 		private const int INVALID_COURSEID    = 9999;
 
+        private const int NUM_COURSES_20153 = 3; 
+
 		[TestInitialize]
 		public void Setup()
 		{
@@ -174,11 +176,24 @@ namespace CoursesAPI.Tests.Services
 
             //Assert:
             Assert.AreEqual(courses.Count, coursesBy2015.Count);
-
+            Assert.AreEqual(courses.Count, NUM_COURSES_20153); 
             for (int i = 0; i < courses.Count; i++)
             {
                 Assert.AreEqual(courses[i].CourseInstanceID, coursesBy2015[i].CourseInstanceID);
             }
+        }
+
+        /// <summary>
+        /// In this test, we assert that when given the argument 20153, it gets exactly the courses
+        /// taught in that semester. No more, no less.
+        /// </summary>
+        public void GetCoursesBySemester_NoMoreNoLess()
+        {
+            //Arrange:
+            //Act:
+            var courses = _service.GetCourseInstancesBySemester("20153");
+            //Assert:
+            Assert.AreEqual(3, courses.Count);
         }
 
         /// <summary>

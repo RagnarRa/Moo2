@@ -1,0 +1,62 @@
+Caching: Eina skjalið í viku 7.. 
+
+Hingað til.. server og DB á sömu vél.. oft ekki. 
+
+Client -> Server -> DB.. svo til baka allt.  Að tala við DB, tímafrekt.. getur verið upptekinn.. og er á annarri vél.. 
+
+Höfum gögn, viljum cache-a.. 
+
+FYRIR GÖGN SEM BREYTAST LÍTIÐ / OFT BEÐIÐ UM.. geymum afrit af þeim á server.. svo við þurfum ekki að fara á server..
+
+EÐA BEST VÆRI að client gæti geymt sjálfur..
+
+Svo cache á server.. eða cache á client.. þá þarf client að spyrja server hvort það séu ný gögn..
+
+Cache-a gögn á server.. geymd í minni.. frumgögn koma úr grunni. 
+
+------------------------------------------------------------------------------------------
+
+Ef server á mörgum vélum... duplicate-a gögnin sem eru cached? Jæja.. ætlum að geyma gögn á serve.r.
+Eða client.. client vill þá vita hvort það eru komin ný gögn..
+
+----------------------
+
+ETags: Þegar request á ákveiðið source.. gögnin hafa þetta tag.. svo geturðu notað það til að spyrja hvort komi ný gögn..
+
+Request á URL -> Fæ til baka ETag í HTTP header.. server ákveðiur etag.. GUID notað oft..  
+
+F. sérhvert request frá client.. látum við fyljga með í header: "If-None-Match" og þetta ETag..
+
+Server veit hvort breyst eða ekki.. ef ekki breyst... 304 Not Modified.. og ekkert content.. 
+
+
+Segjum að við sækjum course object.. opna dialogue til að breyta einhverju og submita.. sendi PUT.. en á milli er einhver annar búinn að breyta..
+Annar var fljótari að uppfæra.. þá her hgæt að nota ETag til að senda til baka.. getur ekki breytt því annar hefur breytt.. 
+
+-------------------------
+
+CacheOutput.. þægilegt.. nota það.. 
+
+NuGet setur færslu í packages.config.. settir í packages möppuna.. henda líka bin og obj.. og bætt við reference.. 
+
+Á aðgerðir.. [CacheOutput(ClientTimeSpan = 100, ServerTimeSpan = 100)] er 100 sekúndur.. 
+
+Sendum request.. fáum 200.. og lista af áföngum.. ETag kemur með... gerum þessa request aftur nema bætum við If-None-Match header.. og GUID í gæsalöppum sem value.. í header... 
+
+Ef sleppa caching.. sleppoum því bara að senda If-None-Match með ETag.. 
+
+
+
+Ef client hefur gögnin sem hann sótti.. kemst hann að því hvort þau breyttust.. og þá fær hann gögnin til baka.. 
+
+
+
+En server þarf að segja ef búið er að breyta.... segjum að við séum líka með AddCourse... hún verður einföld.. 
+----------------
+
+CACHE INVALIDATION: [AutoInvalidateCacheOutput] virkar á controller... ef bara með add/remove course.. bla.. anyway.. getum merkt post með..
+[InvalidateCacheOutput("GetCoursesBySemester")] 
+
+Getum prófað að break-a líka til að sjá hvort þetta sé cache-að.. 
+
+

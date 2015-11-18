@@ -1,0 +1,58 @@
+Deployment ekki.. bara smá kynning.
+
+* Spurning um REST. EKKI SOAP. 
+* Spurning um status code.. hvaða kóða skal skila. 
+
+Aldrei hvaða menu item skal velja. Almennar spurningar um Web API. Verðum ekki beðnir um að muna detail umf ærirbreytur í föll..
+
+CORS gæti komið t.d., lýsa undir hvaða kringumstæðum við höfum áhyggjur af þessu. Hvað gerist, hvar erum við með client/server, á hvaða domain..
+Hvernig er protocol-ið, hvaða fyrirspurnir fara á milli og svör til baka.. Þekkja flæðið..
+
+Ekki spurt m t.d... var cors = new EnableCorsAttribute("*", "*", "*"); eða hvað params þýða..
+
+Pælingar um Architeecture.. lagskipting.. hvað er unit of work.. hvernig notum við það.. 
+
+Aðgreina DTO og ViewModel frá Entity.. etc. 
+
+Í LINQ.. vera með syntax...
+
+Einingapróf: Þekkja arrange, assert, etc.
+
+Hvernig prófum við kóða/er verið að gera eitthvað vitlaust í honum..
+
+Globalization/Localization.. Validation.. Exception handling.. Tracing.. ELK.... ÞEKKJA CONCEPT.. ekki akkurat hvernig.. SLEPPA MEST AF GLOBALIZATION/LOCALIZATION... 
+
+Helstu atriði í Validation, Exception handling... yfirsýn.. 
+
+Authentication/Authorization.. svolítið stórt.. MUNUR Á OAUTH, OpenID Connect.. hver eru helstu flow og munur á þeim... 
+Hvers konar gögn á milli.. hvað er þetta web token.... EKKERT UM HVERNIG.. 
+
+Helstu Secrity atriði.. OData verður voðalega lítið.. bara hvert er grunn concept-ið.. ekki mikla áherslu.. 
+
+Caching líklega.. 
+
+MICROSERVICES CONCEPT.. -- Fórum ekki í Babel!! Monolith vs Microservices.. kosti og galla.. 
+
+NodeJS og Express.. Mongo... Einingapróf.. gæti verið tekið fyrir.. ekki integration tests..
+
+Hvernig virka message queues.. ekki hvaða skipanir í kafka.. klassísk.. undir hvaða kringumstæðum gæti message queue hjálpað okkur til að gera app meira efficient..
+
+DocumentStorage.. varð mongoDB... 
+
+Af hverju þarftu Mongoose.. hvað gerir það fyrir mann.. 
+
+ElasticSearch.. kemur fyrir.. jafnvel í tengslum við caching.. 
+
+Docker.. hugmyndin.. hvað gerir þetta.. af hverju er þetta til.. 
+
+10 spurningar í fyrra.. kemur inn.. 
+
+MUN VERA SPURNING UM AÐ SKRIFA API í Node og Express.. gæti haft Mongo.. 
+
+MUNUR Á CONST OG LET
+
+Gæti komið mocha spurning.. um að skrifa lítið test.. 
+
+ 
+
+ 

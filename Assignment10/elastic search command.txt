@@ -20,3 +20,9 @@ elasticsearch node gæji.. skoða exapmles á github.. elasticsearch.js..
 Kill the index: curl -XDELETE http://localhost:9200/index
 
 curl -XDELETE http://localhost:9200/companies/company/_mapping //Drepa mappings á oject
+
+(company) => {
+   title: company.fields.title[0],
+   description: company.fields.description[0],
+   url: company.fields.url[0]
+}
