@@ -1,0 +1,77 @@
+Deployment ekki.. bara smá kynning.
+
+* Spurning um REST. EKKI SOAP. (Glósað)
+* Spurning um status code.. hvaða kóða skal skila. (Glósað)
+
+Aldrei hvaða menu item skal velja. Almennar spurningar um Web API. Verðum ekki beðnir um að muna detail umf ærirbreytur í föll..
+
+------------------------------------------------------------------------------------------------|
+CORS gæti komið t.d., lýsa undir hvaða kringumstæðum við höfum áhyggjur af þessu. Hvað gerist, hvar erum við með client/server, á hvaða domain..
+Hvernig er protocol-ið, hvaða fyrirspurnir fara á milli og svör til baka.. Þekkja flæðið..
+
+Ekki spurt m t.d... var cors = new EnableCorsAttribute("*", "*", "*"); eða hvað params þýða.. (Glósað) 
+-------------------------------------------------------------------------------------------------|
+
+* Pælingar um Architeecture.. lagskipting.. (Glósað)
+* Aðgreina DTO og ViewModel frá Entity.. etc.  (Glósað)
+* hvað er unit of work.. hvernig notum við okkur það.. (Glósað).. 
+* Í LINQ.. vera með syntax... (Glósað)
+
+---------------------------------------------------------------------|
+* Einingapróf: Þekkja arrange, assert, etc. (Glósað) 
+Hvernig prófum við kóða/er verið að gera eitthvað vitlaust í honum..
+---------------------------------------------------------------------| 
+
+-------------------------------------------------------------|
+* Validation.. Exception handling.. (Glósað)
+Helstu atriði í Validation, Exception handling... yfirsýn..
+--------------------------------------------------------------|
+* Tracing.. ELK.... ÞEKKJA CONCEPT.. ekki akkurat hvernig..  (Glósað)
+ 
+* Helstu Secrity atriði.. (Glósað)
+
+* OData verður voðalega lítið.. bara hvert er grunn concept-ið.. ekki mikla áherslu.. (Glósað) 
+
+* Caching líklega.. (Glósað) 
+
+ 
+ 
+--------------------
+* Hvernig virka message queues.. 
+		ekki hvaða skipanir í kafka.. 
+		Til hvers Kafka? (Glósað)
+		klassísk.. undir hvaða kringumstæðum gæti message queue hjálpað okkur til að gera app meira efficient.. 
+		eða við erum með vef sem virkar svona.. hvað getum við gert til að hjálpa því.. (prófspurning í fyrra)
+------------------------ 
+
+* Af hverju þarftu Mongoose.. hvað gerir það fyrir mann.. (Glósað.. verify?) 
+
+* ElasticSearch.. kemur fyrir.. jafnvel í tengslum við caching.. (GLÓSAÐ) (notum ES til að vera fljótari að leita að dóti)
+
+* Docker.. hugmyndin.. hvað gerir þetta.. af hverju er þetta til.. (Glósað)
+
+MUN VERA SPURNING UM AÐ SKRIFA API í Node og Express.. gæti haft Mongo.. 
+
+* MUNUR Á CONST OG LET (Glósað)
+
+* MICROSERVICES CONCEPT.. -- Fórum ekki í Babel!! Monolith vs Microservices.. kosti og galla.. (Glósað)
+
+* NodeJS og Express.. Mongo... (TODO, more)
+
+Gæti komið mocha spurning.. um að skrifa lítið test.. (TODO more)
+
+ ----------------------------------------------------------------------------|
+Authentication/Authorization.. svolítið stórt.. 
+MUNUR Á OAUTH, OpenID Connect.. hver eru helstu flow og munur á þeim... 
+Hvers konar gögn á milli.. hvað er þetta web token.... EKKERT UM HVERNIG.. 
+
+Hvað er web token: 
+JSON web token er
+ (Glósað) 
+-----------------------------------------------------------------------------|
+ 
+ Globalization/Localization.. SLEPPA MEST AF GLOBALIZATION/LOCALIZATION... (Glósað)
+ 
+ * HVAÐ ER NOSQL vs SQL 
+ 
+ 
